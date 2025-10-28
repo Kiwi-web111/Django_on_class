@@ -29,4 +29,4 @@ def book_list(request):
 def Book(request, pk):
     abook = book.objects.get(id=pk)
     return render(request, 'book.html', {'book': abook})
-#12314564
+#12314564asdfasdf
