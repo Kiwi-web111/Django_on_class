@@ -20,8 +20,8 @@ from django.urls import path
 from catalog import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('catalog/',views.hellow_world),
+    path('whoami/',views.hellow_world),
     path('index/',views.index),
-    path('catalog/books/',views.book_list,name='book_list'),
+    path('catalog/books/',views.book_list),
     path('catalog/books/<int:pk>/',views.Book),
 ]
