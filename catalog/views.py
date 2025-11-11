@@ -36,7 +36,7 @@ def add_book(request):
     if request.method == 'POST':
         form = BookForm(request.POST)
         if form.is_valid():
-            new_book = Book(
+            new_book = book(
                 title=form.cleaned_data['title'],
                 author=form.cleaned_data['author'],
                 published_date=form.cleaned_data['published_date'],
