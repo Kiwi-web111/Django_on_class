@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from datetime import datetime
+
+from catalog.froms import BookForm
 from .models import book
 
 # Create your views here.
@@ -29,4 +31,30 @@ def book_list(request):
 def Book(request, pk):
     abook = book.objects.get(id=pk)
     return render(request, 'book.html', {'book': abook})
-#444564564654
+
+def add_book(request):
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+        if form.is_valid():
+            new_book = Book(
+                title=form.cleaned_data['title'],
+                author=form.cleaned_data['author'],
+                published_date=form.cleaned_data['published_date'],
+                isbn=form.cleaned_data['isbn']
+            )
+            new_book.save()
+            return HttpResponse("Book added successfully!")
+    else:
+        form = BookForm()
+    return render(request, 'add_book.html', {'form': form})
+
+def add_book_model_form(request):
+    from .forms import BookModelForm
+    if request.method == 'POST':
+        form = BookModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Book added successfully using ModelForm!")
+    else:
+        form = BookModelForm()
+    return render(request, 'add_book.html', {'form': form})
