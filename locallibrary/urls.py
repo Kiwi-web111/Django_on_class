@@ -24,4 +24,6 @@ urlpatterns = [
     path('index/',views.index),
     path('catalog/books/',views.book_list),
     path('catalog/books/<int:pk>/',views.Book),
+    path('catalog/books/add/', views.add_book, name='add_book'),
+    path('catalog/books/add2/', views.add_book_model_form, name='add_book_model_form'),
 ]

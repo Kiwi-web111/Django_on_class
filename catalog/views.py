@@ -49,7 +49,7 @@ def add_book(request):
     return render(request, 'add_book.html', {'form': form})
 
 def add_book_model_form(request):
-    from .forms import BookModelForm
+    from .froms import BookModelForm
     if request.method == 'POST':
         form = BookModelForm(request.POST)
         if form.is_valid():
