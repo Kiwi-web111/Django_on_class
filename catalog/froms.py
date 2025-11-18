@@ -23,4 +23,3 @@ class BookModelForm(forms.ModelForm):
         widgets = {
             'published_date': forms.DateInput(attrs={'type': 'date'}),
         }
-        
