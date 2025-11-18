@@ -16,4 +16,3 @@ class BorrowRecordAdmin(admin.ModelAdmin):
     search_fields = ('user__username', 'book__title')
 
 ############
-#12346

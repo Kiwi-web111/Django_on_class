@@ -14,7 +14,7 @@ class book(models.Model):
 class BorrowRecord(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="借閱者")
     book = models.ForeignKey(book, on_delete=models.CASCADE, verbose_name="借閱書籍")
-    borrow_date = models.DateField(null=True, blank=True, verbose_name="借閱日期")
+    borrow_date = models.DateField(auto_now_add=True, verbose_name="借閱日期")
     return_date = models.DateField(null=True, blank=True, verbose_name="歸還日期")
 
     def __str__(self):
