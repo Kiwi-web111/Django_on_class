@@ -23,3 +23,10 @@ class BorrowRecord(models.Model):
     class Meta:
         verbose_name = "借閱紀錄"
         verbose_name_plural = "借閱紀錄管理"
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True)
+
+    def __str__(self):
+        return f"{self.user.username} 的個人資料"
