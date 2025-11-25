@@ -32,7 +32,8 @@ def user_login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('/')
+                next_url = request.POST.get('next') or request.GET.get('next')
+                return redirect(next_url or '/catalog/books/')
     else:
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
@@ -40,5 +41,3 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('/')
-
-# Create your views here.

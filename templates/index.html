@@ -19,16 +19,19 @@
             box-shadow: 0 8px 32px rgba(44, 62, 80, 0.15);
             padding: 40px 30px;
             text-align: center;
+            position: relative;
         }
-        h1 {
-            color: #2d5fa4;
-            font-size: 2.8em;
-            margin-bottom: 18px;
+        .topbar {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        p {
-            color: #555;
-            font-size: 1.2em;
-            margin-bottom: 30px;
+        .user-label {
+            color: #333;
+            font-size: 0.95em;
         }
         .btn {
             display: inline-block;
@@ -40,8 +43,23 @@
             font-size: 1.1em;
             transition: background 0.2s;
         }
+        .btn.small {
+            padding: 6px 12px;
+            font-size: 0.9em;
+            border-radius: 6px;
+        }
         .btn:hover {
             background: #1b3c6b;
+        }
+        h1 {
+            color: #2d5fa4;
+            font-size: 2.8em;
+            margin-bottom: 18px;
+        }
+        p {
+            color: #555;
+            font-size: 1.2em;
+            margin-bottom: 30px;
         }
         .footer {
             margin-top: 40px;
@@ -52,9 +70,18 @@
 </head>
 <body>
     <div class="container">
+        <div class="topbar">
+            {% if user.is_authenticated %}
+                <div class="user-label">您好，{{ user.get_full_name|default:user.username }}</div>
+                <a href="/accounts/logout/" class="btn small">登出</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn small">登入</a>
+            {% endif %}
+        </div>
+
         <h1>歡迎來到我的圖書館</h1>
         <p>在這裡，您可以探索各種書籍、作者和分類。<br>享受閱讀的樂趣，發現知識的寶藏！</p>
-        <a href="#" class="btn">開始探索</a>
+        <a href="{% url 'login' %}" class="btn">開始探索</a>
         <div class="footer">
             &copy; 2024 我的圖書館. 保留所有權利。
         </div>
